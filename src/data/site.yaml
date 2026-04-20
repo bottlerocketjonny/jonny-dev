@@ -1,0 +1,18 @@
+name: Jonny
+location: Sheffield
+eyebrow: Portfolio
+hero_prefix: "Backend systems &"
+hero_accent: "quiet interfaces"
+hero_suffix: "."
+intro: |
+  Full-stack developer in Sheffield. Eleven years making records before
+  software.
+intro_muted: |
+  Currently building chatbot infrastructure for healthcare and public
+  sector, and a grassroots booking platform for independent venues.
+links:
+  - { label: email,  href: "mailto:hello@example.com" }
+  - { label: github, href: "https://github.com/bottlerocketjonny" }
+  - { label: cv,     href: "/cv.pdf" }
+selected_work_range: "2023 — 2026"
+footer_left: "jonny@"
