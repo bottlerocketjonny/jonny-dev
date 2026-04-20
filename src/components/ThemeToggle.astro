@@ -1,0 +1,46 @@
+---
+---
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">
+  <span class="dot" aria-hidden="true"></span>
+  <span id="themeLabel">Dark</span>
+</button>
+
+<script is:inline>
+  (() => {
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const label = document.getElementById('themeLabel');
+    if (!btn || !label) return;
+
+    const systemPrefersDark = () =>
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const resolved = () => {
+      const m = root.getAttribute('data-theme');
+      if (m === 'light') return 'light';
+      if (m === 'dark') return 'dark';
+      return systemPrefersDark() ? 'dark' : 'light';
+    };
+
+    const setLabel = () => {
+      label.textContent = resolved() === 'dark' ? 'Light' : 'Dark';
+    };
+
+    btn.addEventListener('click', () => {
+      const next = resolved() === 'dark' ? 'light' : 'dark';
+      const apply = () => {
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (_) {}
+        setLabel();
+      };
+      if (document.startViewTransition) document.startViewTransition(apply);
+      else apply();
+    });
+
+    setLabel();
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (root.getAttribute('data-theme') === 'auto') setLabel();
+    });
+  })();
+</script>

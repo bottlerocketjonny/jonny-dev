@@ -1,18 +1,23 @@
 ---
-import '../styles/tokens.css';
-import '../styles/reset.css';
-import '../styles/global.css';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProjectList from '../components/ProjectList.astro';
+import Footer from '../components/Footer.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { site } from '../data/site.ts';
+
+const description = site.intro.replace(/\s+/g, ' ').trim();
 ---
-<!doctype html>
-<html lang="en" data-theme="auto">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>jonny-dev</title>
-  </head>
-  <body>
-    <div class="container">
-      <p class="mono">Phase 3 — styles loaded. Components arrive in Phase 4.</p>
-    </div>
-  </body>
-</html>
+<Base title={`${site.name} — Portfolio`} description={description}>
+  <div class="container" id="top">
+    <header class="top">
+      <span class="mono">{site.name} — {site.location}</span>
+      <ThemeToggle />
+    </header>
+    <main>
+      <Hero />
+      <ProjectList />
+    </main>
+    <Footer />
+  </div>
+</Base>

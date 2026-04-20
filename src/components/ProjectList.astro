@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import { site } from '../data/site.ts';
+import Project from './Project.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<section aria-labelledby="selected-work">
+  <div class="section-label mono">
+    <span id="selected-work">Selected work</span>
+    <span>{site.selected_work_range}</span>
+  </div>
+  {projects.map((p) => <Project project={p} />)}
+</section>

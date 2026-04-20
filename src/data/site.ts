@@ -1,11 +1,6 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { z } from 'zod';
-
-const here = path.dirname(fileURLToPath(import.meta.url));
-const raw = fs.readFileSync(path.join(here, 'site.yaml'), 'utf8');
+import raw from './site.yaml?raw';
 
 const SiteSchema = z.object({
   name: z.string(),
