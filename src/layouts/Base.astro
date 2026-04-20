@@ -21,6 +21,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://jonny.dev')
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:site_name" content={title} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+
+    <meta name="theme-color" content="#e9ece8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1418" media="(prefers-color-scheme: dark)" />
     <link
       rel="preload"
       href={instrumentSerif400}
