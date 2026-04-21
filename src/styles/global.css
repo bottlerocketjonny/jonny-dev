@@ -322,6 +322,18 @@ header.top {
   color: var(--muted);
   flex-wrap: wrap;
 }
+.project .affordance {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+a.project .affordance {
+  color: var(--accent);           /* PETROL: interactive */
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+a.project:hover .affordance {
+  opacity: 1;
+}
 
 /* ============================================================
    OPEN SOURCE

@@ -10,6 +10,7 @@ const projects = defineCollection({
     year: z.string(),
     stack: z.array(z.string()),
     link: z.string().url().optional(),
+    link_label: z.string().optional(),
     order: z.number().int().positive(),
     draft: z.boolean().default(false),
   }),
