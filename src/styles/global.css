@@ -324,6 +324,37 @@ header.top {
 }
 
 /* ============================================================
+   OPEN SOURCE
+============================================================ */
+.contrib-list {
+  padding: 0.5rem 0 0;
+}
+.contrib {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.contrib:last-child {
+  border-bottom: none;
+}
+.contrib-label {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--accent-warm);       /* ORANGE: editorial emphasis */
+}
+.contrib-sep {
+  color: var(--rule);
+}
+
+/* give the open-source section some breathing room after projects */
+section + section {
+  margin-top: 4rem;
+}
+
+/* ============================================================
    FOOTER
 ============================================================ */
 footer {

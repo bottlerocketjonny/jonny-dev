@@ -16,7 +16,7 @@ const { Content } = await render(project);
       <span class="context">{data.context}</span>
       <span class="year">{data.year}</span>
     </div>
-    <h3 class="title"><em>{data.accent}.</em>{' '}{data.title}</h3>
+    <h3 class="title"><em>{data.accent}.</em>{data.title && <>{' '}{data.title}</>}</h3>
     <div class="desc"><Content /></div>
     <div class="stack mono">
       {data.stack.map((s) => <span>{s}</span>)}
@@ -28,7 +28,7 @@ const { Content } = await render(project);
       <span class="context">{data.context}</span>
       <span class="year">{data.year}</span>
     </div>
-    <h3 class="title"><em>{data.accent}.</em>{' '}{data.title}</h3>
+    <h3 class="title"><em>{data.accent}.</em>{data.title && <>{' '}{data.title}</>}</h3>
     <div class="desc"><Content /></div>
     <div class="stack mono">
       {data.stack.map((s) => <span>{s}</span>)}

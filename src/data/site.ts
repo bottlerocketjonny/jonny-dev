@@ -18,6 +18,13 @@ const SiteSchema = z.object({
     }),
   ),
   selected_work_range: z.string(),
+  open_source_label: z.string(),
+  open_source: z.array(
+    z.object({
+      label: z.string(),
+      note: z.string(),
+    }),
+  ),
   footer_left: z.string(),
 });
 

@@ -8,4 +8,4 @@ order: 2
 draft: false
 ---
 
-Chains Katana, OWASP ZAP, Nuclei and TestSSL into Jenkins for automated reconnaissance and scanning.
+Chains Katana, OWASP ZAP, Nuclei, and TestSSL into Jenkins. Produces evidence reports mapped to OWASP Top 10.
