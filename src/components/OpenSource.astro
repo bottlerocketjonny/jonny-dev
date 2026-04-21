@@ -1,0 +1,17 @@
+---
+import { site } from '../data/site.ts';
+---
+<section aria-labelledby="open-source">
+  <h2 id="open-source" class="section-label mono">
+    <span>{site.open_source_label}</span>
+  </h2>
+  <ul class="contrib-list">
+    {site.open_source.map((c) => (
+      <li class="contrib">
+        <em class="contrib-label">{c.label}</em>
+        <span class="contrib-sep" aria-hidden="true"> — </span>
+        <span class="contrib-note">{c.note}</span>
+      </li>
+    ))}
+  </ul>
+</section>

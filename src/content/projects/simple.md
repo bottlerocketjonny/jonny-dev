@@ -9,4 +9,4 @@ order: 1
 draft: false
 ---
 
-A three-sided marketplace connecting unsigned bands, independent venues, and promoters. Pilot running with Sheffield SIVA venues.
+A three-sided marketplace connecting unsigned bands, independent venues, and promoters. Pilot running with SIVA, Sheffield's independent venue network.

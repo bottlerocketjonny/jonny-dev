@@ -1,6 +1,6 @@
 ---
 accent: Enora
-title: "A conversational platform for charities."
+title: "A conversational platform for the public sector and charities."
 context: "Japeto Labs"
 year: "2024 —"
 stack: [Java, AWS, React]
@@ -8,4 +8,4 @@ order: 3
 draft: false
 ---
 
-White-label chatbot deployed at NHS trusts and Citizens Advice. Drafted working backwards from a press release.
+White-label chatbot deployed across three NHS trusts, Citizens Advice, and Harlow College. Hundreds of daily queries at 99.9% uptime.

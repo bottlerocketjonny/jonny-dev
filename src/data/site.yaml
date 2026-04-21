@@ -11,8 +11,12 @@ intro_muted: |
   Currently building chatbot infrastructure for healthcare and public
   sector, and a grassroots booking platform for independent venues.
 links:
-  - { label: email,  href: "mailto:hello@example.com" }
+  - { label: email,  href: "mailto:jj.coddington93@gmail.com" }
   - { label: github, href: "https://github.com/bottlerocketjonny" }
   - { label: cv,     href: "/cv.pdf" }
 selected_work_range: "2023 — 2026"
-footer_left: "jonny@"
+open_source_label: "Open source"
+open_source:
+  - { label: "Langchain4J", note: "AWS Bedrock model integrations." }
+  - { label: "Spring Security", note: "error message improvements." }
+footer_left: "jj.coddington93@"
