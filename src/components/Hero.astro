@@ -3,25 +3,49 @@ import { site } from '../data/site.ts';
 
 const intro = site.intro.replace(/\s+/g, ' ').trim();
 const introMuted = site.intro_muted.replace(/\s+/g, ' ').trim();
+const base = import.meta.env.BASE_URL;
+const webp160 = `${base}portrait/portrait-160.webp`;
+const webp320 = `${base}portrait/portrait-320.webp`;
+const webp480 = `${base}portrait/portrait-480.webp`;
+const jpg320 = `${base}portrait/portrait-320.jpg`;
 ---
 <section class="hero">
-  <div class="eyebrow mono">{site.eyebrow}</div>
-  <h1>{site.hero_prefix} <em>{site.hero_accent}</em>{site.hero_suffix}</h1>
-  <p class="intro">
-    {intro} <span class="muted">{introMuted}</span>
-  </p>
-  <nav class="links" aria-label="Primary">
-    {site.links.map((l) => {
-      const external = /^https?:/.test(l.href);
-      return (
-        <a
-          href={l.href}
-          rel={external ? 'noopener noreferrer' : undefined}
-          target={external ? '_blank' : undefined}
-        >
-          {l.label} ↗
-        </a>
-      );
-    })}
-  </nav>
+  <div class="hero-main">
+    <div class="eyebrow mono">{site.eyebrow}</div>
+    <h1>{site.hero_prefix} <em>{site.hero_accent}</em>{site.hero_suffix}</h1>
+    <p class="intro">
+      {intro} <span class="muted">{introMuted}</span>
+    </p>
+    <nav class="links" aria-label="Primary">
+      {site.links.map((l) => {
+        const external = /^https?:/.test(l.href);
+        return (
+          <a
+            href={l.href}
+            rel={external ? 'noopener noreferrer' : undefined}
+            target={external ? '_blank' : undefined}
+          >
+            {l.label} ↗
+          </a>
+        );
+      })}
+    </nav>
+  </div>
+  <figure class="portrait portrait--hero" aria-hidden="true">
+    <picture>
+      <source
+        type="image/webp"
+        srcset={`${webp160} 1x, ${webp320} 2x, ${webp480} 3x`}
+      />
+      <img
+        src={jpg320}
+        alt={site.name}
+        width="140"
+        height="140"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
+  </figure>
 </section>

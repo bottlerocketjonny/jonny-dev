@@ -144,6 +144,22 @@ header.top {
 ============================================================ */
 .hero {
   margin-bottom: 7rem;
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+.hero-main {
+  flex: 1;
+  min-width: 0;
+}
+.portrait--hero {
+  flex: 0 0 auto;
+  margin: 0.25rem 0 0;
+  animation: fadeUp 1.2s 0.15s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.portrait--hero img {
+  width: 140px;
+  height: 140px;
 }
 .hero .eyebrow {
   margin-bottom: 2.25rem;
@@ -239,26 +255,17 @@ header.top {
 .about {
   margin-bottom: 6rem;
 }
-.about-row {
-  display: flex;
-  gap: 2.5rem;
-  align-items: flex-start;
-}
 .about-body {
   font-size: 1.0625rem;
   color: var(--ink);
   max-width: 52ch;
   line-height: 1.65;
   font-weight: 300;
-  flex: 1;
 }
 .portrait {
-  flex: 0 0 auto;
   margin: 0;
 }
 .portrait img {
-  width: 160px;
-  height: 160px;
   border: 1px solid var(--rule);
   border-radius: 2px;
   background: var(--surface);
@@ -268,13 +275,13 @@ header.top {
   .about {
     margin-bottom: 4.5rem;
   }
-  .about-row {
-    flex-direction: column;
-    gap: 1.75rem;
+  .hero {
+    flex-direction: column-reverse;
+    gap: 2rem;
   }
-  .portrait img {
-    width: 120px;
-    height: 120px;
+  .portrait--hero img {
+    width: 110px;
+    height: 110px;
   }
 }
 
