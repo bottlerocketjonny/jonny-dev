@@ -2,33 +2,10 @@
 import { site } from '../data/site.ts';
 
 const body = site.about.replace(/\s+/g, ' ').trim();
-const base = import.meta.env.BASE_URL;
-const webp160 = `${base}portrait/portrait-160.webp`;
-const webp320 = `${base}portrait/portrait-320.webp`;
-const webp480 = `${base}portrait/portrait-480.webp`;
-const jpg320 = `${base}portrait/portrait-320.jpg`;
 ---
 <section class="about" aria-labelledby="about">
   <h2 id="about" class="section-label mono">
     <span>{site.about_label}</span>
   </h2>
-  <div class="about-row">
-    <p class="about-body">{body}</p>
-    <figure class="portrait" aria-hidden="true">
-      <picture>
-        <source
-          type="image/webp"
-          srcset={`${webp160} 1x, ${webp320} 2x, ${webp480} 3x`}
-        />
-        <img
-          src={jpg320}
-          alt={site.name}
-          width="160"
-          height="160"
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-    </figure>
-  </div>
+  <p class="about-body">{body}</p>
 </section>

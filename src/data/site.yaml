@@ -17,10 +17,10 @@ links:
   - { label: cv,       href: "/cv.pdf" }
 about_label: "About"
 about: |
-  TODO: 3–4 sentences covering what you're looking for next,
-  location stance (sheffield-based, remote uk or hybrid northern
-  england), and the kinds of problems you want to work on. Keep
-  it terse and lowercase-ish — no buzzwords.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+  enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  nisi ut aliquip ex ea commodo consequat.
 selected_work_range: "2023 — 2026"
 open_source_label: "Open source"
 open_source:
