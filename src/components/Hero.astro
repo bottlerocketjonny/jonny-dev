@@ -3,49 +3,25 @@ import { site } from '../data/site.ts';
 
 const intro = site.intro.replace(/\s+/g, ' ').trim();
 const introMuted = site.intro_muted.replace(/\s+/g, ' ').trim();
-const base = import.meta.env.BASE_URL;
-const webp180 = `${base}portrait/me-180.webp`;
-const webp360 = `${base}portrait/me-360.webp`;
-const webp540 = `${base}portrait/me-540.webp`;
-const pngFallback = `${base}portrait/me-360.png`;
 ---
 <section class="hero">
-  <div class="hero-main">
-    <div class="eyebrow mono">{site.eyebrow}</div>
-    <h1>{site.hero_prefix} <span class="accent-lockup"><em>{site.hero_accent}</em>{site.hero_suffix}</span></h1>
-    <p class="intro">
-      {intro} <span class="muted">{introMuted}</span>
-    </p>
-    <nav class="links" aria-label="Primary">
-      {site.links.map((l) => {
-        const external = /^https?:/.test(l.href);
-        return (
-          <a
-            href={l.href}
-            rel={external ? 'noopener noreferrer' : undefined}
-            target={external ? '_blank' : undefined}
-          >
-            {l.label} ↗
-          </a>
-        );
-      })}
-    </nav>
-  </div>
-  <figure class="portrait portrait--hero" aria-hidden="true">
-    <picture>
-      <source
-        type="image/webp"
-        srcset={`${webp180} 1x, ${webp360} 2x, ${webp540} 3x`}
-      />
-      <img
-        src={pngFallback}
-        alt={site.name}
-        width="201"
-        height="180"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-      />
-    </picture>
-  </figure>
+  <div class="eyebrow mono">{site.eyebrow}</div>
+  <h1>{site.hero_prefix} <span class="accent-lockup"><em>{site.hero_accent}</em>{site.hero_suffix}</span></h1>
+  <p class="intro">
+    {intro} <span class="muted">{introMuted}</span>
+  </p>
+  <nav class="links" aria-label="Primary">
+    {site.links.map((l) => {
+      const external = /^https?:/.test(l.href);
+      return (
+        <a
+          href={l.href}
+          rel={external ? 'noopener noreferrer' : undefined}
+          target={external ? '_blank' : undefined}
+        >
+          {l.label} ↗
+        </a>
+      );
+    })}
+  </nav>
 </section>

@@ -144,27 +144,6 @@ header.top {
 ============================================================ */
 .hero {
   margin-bottom: 7rem;
-  display: flex;
-  gap: 2.5rem;
-  align-items: flex-start;
-}
-.hero-main {
-  flex: 1;
-  min-width: 0;
-}
-.portrait--hero {
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 0.5rem 0.5rem 0;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  animation: fadeUp 1.2s 0.15s both cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.portrait--hero img {
-  width: auto;
-  height: 160px;
-  display: block;
 }
 .hero .eyebrow {
   margin-bottom: 2.25rem;
@@ -269,23 +248,10 @@ header.top {
   line-height: 1.65;
   font-weight: 300;
 }
-.portrait {
-  margin: 0;
-}
 
 @media (max-width: 600px) {
   .about {
     margin-bottom: 4.5rem;
-  }
-  .hero {
-    flex-direction: column-reverse;
-    gap: 2rem;
-  }
-  .portrait--hero {
-    padding: 0.375rem 0.375rem 0;
-  }
-  .portrait--hero img {
-    height: 130px;
   }
 }
 
