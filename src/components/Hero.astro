@@ -4,10 +4,10 @@ import { site } from '../data/site.ts';
 const intro = site.intro.replace(/\s+/g, ' ').trim();
 const introMuted = site.intro_muted.replace(/\s+/g, ' ').trim();
 const base = import.meta.env.BASE_URL;
-const webp160 = `${base}portrait/portrait-160.webp`;
-const webp320 = `${base}portrait/portrait-320.webp`;
-const webp480 = `${base}portrait/portrait-480.webp`;
-const jpg320 = `${base}portrait/portrait-320.jpg`;
+const webp180 = `${base}portrait/me-180.webp`;
+const webp360 = `${base}portrait/me-360.webp`;
+const webp540 = `${base}portrait/me-540.webp`;
+const pngFallback = `${base}portrait/me-360.png`;
 ---
 <section class="hero">
   <div class="hero-main">
@@ -35,13 +35,13 @@ const jpg320 = `${base}portrait/portrait-320.jpg`;
     <picture>
       <source
         type="image/webp"
-        srcset={`${webp160} 1x, ${webp320} 2x, ${webp480} 3x`}
+        srcset={`${webp180} 1x, ${webp360} 2x, ${webp540} 3x`}
       />
       <img
-        src={jpg320}
+        src={pngFallback}
         alt={site.name}
-        width="140"
-        height="140"
+        width="201"
+        height="180"
         loading="eager"
         decoding="async"
         fetchpriority="high"
