@@ -1,5 +1,6 @@
 ---
-accent: "A recycling platform for festivals"
+accent: "TODO"
+title: "A recycling platform for festivals."
 context: "Japeto Labs"
 year: "2024"
 stack: [Spring Boot, PostGIS, AWS]
