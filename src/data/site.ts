@@ -17,6 +17,8 @@ const SiteSchema = z.object({
       href: z.string(),
     }),
   ),
+  about_label: z.string(),
+  about: z.string(),
   selected_work_range: z.string(),
   open_source_label: z.string(),
   open_source: z.array(

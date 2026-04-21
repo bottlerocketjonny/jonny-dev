@@ -15,6 +15,12 @@ links:
   - { label: github,   href: "https://github.com/bottlerocketjonny" }
   - { label: linkedin, href: "TODO" }
   - { label: cv,       href: "/cv.pdf" }
+about_label: "About"
+about: |
+  TODO: 3–4 sentences covering what you're looking for next,
+  location stance (sheffield-based, remote uk or hybrid northern
+  england), and the kinds of problems you want to work on. Keep
+  it terse and lowercase-ish — no buzzwords.
 selected_work_range: "2023 — 2026"
 open_source_label: "Open source"
 open_source:
