@@ -11,7 +11,7 @@
     "astro": "astro"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12"
   },
   "packageManager": "pnpm@10.33.0",
   "dependencies": {

@@ -4,8 +4,8 @@ Personal portfolio. Single-page Astro site, markdown-driven content, hand-crafte
 
 ## Requirements
 
-- Node 20+
-- pnpm
+- Node 22.12+
+- pnpm 10+
 
 ## Commands
 
