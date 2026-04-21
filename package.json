@@ -2,6 +2,7 @@
   "name": "jonny-dev",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,9 +10,23 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "packageManager": "pnpm@10.33.0",
   "dependencies": {
-    "astro": "^4.7.0",
-    "@astrojs/check": "^0.5.10",
-    "typescript": "^5.4.5"
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/sitemap": "^3.7.2",
+    "@fontsource-variable/inter-tight": "^5.2.7",
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "astro": "^6.1.8",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^25.6.0",
+    "js-yaml": "^4.1.1",
+    "typescript": "^5.9.3"
   }
 }

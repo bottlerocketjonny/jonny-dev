@@ -1,0 +1,27 @@
+---
+import { site } from '../data/site.ts';
+
+const intro = site.intro.replace(/\s+/g, ' ').trim();
+const introMuted = site.intro_muted.replace(/\s+/g, ' ').trim();
+---
+<section class="hero">
+  <div class="eyebrow mono">{site.eyebrow}</div>
+  <h1>{site.hero_prefix} <em>{site.hero_accent}</em>{site.hero_suffix}</h1>
+  <p class="intro">
+    {intro} <span class="muted">{introMuted}</span>
+  </p>
+  <nav class="links" aria-label="Primary">
+    {site.links.map((l) => {
+      const external = /^https?:/.test(l.href);
+      return (
+        <a
+          href={l.href}
+          rel={external ? 'noopener noreferrer' : undefined}
+          target={external ? '_blank' : undefined}
+        >
+          {l.label} ↗
+        </a>
+      );
+    })}
+  </nav>
+</section>

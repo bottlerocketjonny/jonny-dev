@@ -1,0 +1,379 @@
+/* ============================================================
+   FONTS — self-hosted via @fontsource
+============================================================ */
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource-variable/inter-tight/wght.css';
+@import '@fontsource/jetbrains-mono/400.css';
+
+/* ============================================================
+   BASE
+============================================================ */
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* ============================================================
+   FOCUS — copper, 2px outline, 2px offset
+============================================================ */
+:where(a, button, [tabindex]):focus {
+  outline: none;
+}
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent-warm);
+  outline-offset: 2px;
+}
+
+/* keyboard-only skip link — visible when focused */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+  z-index: 100;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+body {
+  font-family: 'Inter Tight Variable', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  overflow-x: hidden;
+  letter-spacing: -0.008em;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* dual-tone glow: petrol left, warm right — very subtle */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% -5%, var(--accent-soft) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% -5%, var(--accent-warm-soft) 0%, transparent 55%);
+  opacity: 0.4;
+  transition: opacity 0.5s ease;
+}
+
+/* grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+.container {
+  position: relative;
+  z-index: 3;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ============================================================
+   TOP BAR
+============================================================ */
+header.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 5rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 10px 4px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+.theme-toggle .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.6;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  margin-bottom: 7rem;
+}
+.hero .eyebrow {
+  margin-bottom: 2.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.hero .eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 8.5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin-bottom: 2rem;
+  max-width: 14ch;
+  animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-warm);      /* ORANGE: editorial emphasis */
+  font-weight: 400;
+  position: relative;
+  white-space: nowrap;
+}
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.08em;
+  height: 1px;
+  background: var(--accent-warm);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: draw 0.9s 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.hero .intro {
+  font-size: 1.0625rem;
+  color: var(--ink);
+  max-width: 40ch;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  animation: fadeUp 1.2s 0.2s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.hero .intro .muted {
+  color: var(--muted);
+}
+
+.hero .links {
+  display: inline-flex;
+  gap: 2rem;
+  animation: fadeUp 1.2s 0.4s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.hero .links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s;
+}
+.hero .links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.25;
+  transition: opacity 0.3s;
+}
+.hero .links a:hover {
+  color: var(--accent);           /* PETROL: interactive */
+}
+.hero .links a:hover::after {
+  opacity: 1;
+}
+
+/* ============================================================
+   PROJECTS
+============================================================ */
+.section-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.project {
+  display: block;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  transition: padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+.project:hover {
+  padding-left: 1.25rem;
+}
+.project::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.5rem;
+  color: var(--accent);            /* PETROL: interactive signal */
+  opacity: 0;
+  transform: translate(-10px, -50%);
+  transition: opacity 0.35s, transform 0.35s;
+}
+.project:hover::before {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.project .meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+.project .context {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 3px 9px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+.project .year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project .title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.85rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  margin-bottom: 0.75rem;
+}
+.project .title em {
+  font-style: italic;
+  color: var(--accent-warm);       /* ORANGE: editorial emphasis */
+}
+.project .desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 52ch;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.project .stack {
+  display: flex;
+  gap: 1.5rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  margin-top: 7rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+}
+footer a {
+  color: var(--muted);
+  transition: color 0.3s;
+}
+footer a:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes draw {
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 600px) {
+  .container {
+    padding: 3rem 1.5rem;
+  }
+  .hero {
+    margin-bottom: 5rem;
+  }
+  .project:hover {
+    padding-left: 0;
+  }
+  .project::before {
+    display: none;
+  }
+}

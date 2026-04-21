@@ -1,4 +1,10 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://bottlerocketjonny.github.io',
+  base: '/jonny-dev',
+  trailingSlash: 'always',
+  output: 'static',
+  integrations: [sitemap()],
+});
