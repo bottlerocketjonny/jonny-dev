@@ -19,4 +19,4 @@ open_source_label: "Open source"
 open_source:
   - { label: "Langchain4J", note: "AWS Bedrock model integrations." }
   - { label: "Spring Security", note: "error message improvements." }
-footer_left: "jj.coddington93@"
+footer_left: "jj.coddington93@gmail.com"
