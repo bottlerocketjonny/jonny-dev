@@ -239,17 +239,42 @@ header.top {
 .about {
   margin-bottom: 6rem;
 }
+.about-row {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
 .about-body {
   font-size: 1.0625rem;
   color: var(--ink);
   max-width: 52ch;
   line-height: 1.65;
   font-weight: 300;
+  flex: 1;
+}
+.portrait {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.portrait img {
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--surface);
 }
 
 @media (max-width: 600px) {
   .about {
     margin-bottom: 4.5rem;
+  }
+  .about-row {
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  .portrait img {
+    width: 120px;
+    height: 120px;
   }
 }
 
