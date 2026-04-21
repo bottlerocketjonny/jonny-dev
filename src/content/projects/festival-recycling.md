@@ -1,5 +1,5 @@
 ---
-accent: "TODO"
+accent: "Bin to Win"
 title: "A recycling platform for festivals."
 context: "Japeto Labs"
 year: "2024"
