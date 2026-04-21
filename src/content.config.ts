@@ -13,6 +13,16 @@ const projects = defineCollection({
     link_label: z.string().optional(),
     order: z.number().int().positive(),
     draft: z.boolean().default(false),
+    featured: z.boolean().default(false),
+    pullquote: z.string().optional(),
+    image: z
+      .object({
+        src: z.string(),
+        alt: z.string(),
+        width: z.number().int().positive().optional(),
+        height: z.number().int().positive().optional(),
+      })
+      .optional(),
   }),
 });
 

@@ -3,13 +3,21 @@ import { getCollection } from 'astro:content';
 import { site } from '../data/site.ts';
 import Project from './Project.astro';
 
-const projects = (await getCollection('projects', ({ data }) => !data.draft))
+const all = (await getCollection('projects', ({ data }) => !data.draft))
   .sort((a, b) => a.data.order - b.data.order);
+
+const featured = all.filter((p) => p.data.featured);
+const rest = all.filter((p) => !p.data.featured);
 ---
 <section aria-labelledby="selected-work">
   <h2 id="selected-work" class="section-label mono">
     <span>Selected work</span>
     <span>{site.selected_work_range}</span>
   </h2>
-  {projects.map((p) => <Project project={p} />)}
+  {featured.length > 0 && (
+    <div class="featured-wrap">
+      {featured.map((p) => <Project project={p} />)}
+    </div>
+  )}
+  {rest.map((p) => <Project project={p} />)}
 </section>

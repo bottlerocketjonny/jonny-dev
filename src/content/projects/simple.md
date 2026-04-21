@@ -5,8 +5,10 @@ context: "Side project"
 year: "2026 —"
 stack: [Spring Boot, Next.js, Postgres]
 link: "https://github.com/bottlerocketjonny/simple"
+link_label: "source"
 order: 1
 draft: false
+featured: true
 ---
 
 A three-sided marketplace connecting unsigned bands, independent venues, and promoters. Pilot running with SIVA, Sheffield's independent venue network.
