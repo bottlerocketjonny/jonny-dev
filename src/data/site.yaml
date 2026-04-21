@@ -18,6 +18,6 @@ links:
 selected_work_range: "2023 — 2026"
 open_source_label: "Open source"
 open_source:
-  - { label: "Langchain4J", note: "AWS Bedrock model integrations." }
-  - { label: "Spring Security", note: "error message improvements." }
+  - { label: "Langchain4J",     note: "AWS Bedrock model integrations.", href: "TODO" }
+  - { label: "Spring Security", note: "error message improvements.",     href: "TODO" }
 footer_left: "jj.coddington93@gmail.com"

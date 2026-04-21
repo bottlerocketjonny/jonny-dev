@@ -23,6 +23,7 @@ const SiteSchema = z.object({
     z.object({
       label: z.string(),
       note: z.string(),
+      href: z.string().optional(),
     }),
   ),
   footer_left: z.string(),

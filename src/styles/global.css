@@ -348,6 +348,22 @@ header.top {
 .contrib-sep {
   color: var(--rule);
 }
+.contrib-link {
+  color: inherit;
+  transition: color 0.3s;
+}
+.contrib-link:hover {
+  color: var(--accent);            /* PETROL: interactive */
+}
+.contrib-link:hover .contrib-label {
+  color: var(--accent);
+}
+.contrib-arrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 0.25rem;
+}
 
 /* give the open-source section some breathing room after projects */
 section + section {
