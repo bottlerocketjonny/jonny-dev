@@ -2,7 +2,7 @@
 accent: Enora
 title: "A conversational platform for the public sector and charities."
 context: "Japeto Labs"
-year: "2024 —"
+year: "2023 —"
 stack: [Java, AWS, React]
 order: 3
 draft: false
