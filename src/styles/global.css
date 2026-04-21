@@ -189,12 +189,14 @@ header.top {
   max-width: 14ch;
   animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+.hero h1 .accent-lockup {
+  white-space: nowrap;
+}
 .hero h1 em {
   font-style: italic;
   color: var(--accent-warm);      /* ORANGE: editorial emphasis */
   font-weight: 400;
   position: relative;
-  white-space: nowrap;
 }
 .hero h1 em::after {
   content: '';
