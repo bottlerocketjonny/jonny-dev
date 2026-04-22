@@ -71,6 +71,10 @@ body::before {
   transition: opacity 0.5s ease;
 }
 
+:root[data-theme="dark"] body::before {
+  opacity: 0;
+}
+
 /* grain */
 body::after {
   content: '';
