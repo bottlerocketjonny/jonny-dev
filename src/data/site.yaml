@@ -14,12 +14,6 @@ links:
   - { label: email,    href: "mailto:jj.coddington93@gmail.com" }
   - { label: github,   href: "https://github.com/bottlerocketjonny" }
   - { label: linkedin, href: "TODO" }
-about_label: "About"
-about: |
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-  nisi ut aliquip ex ea commodo consequat.
 selected_work_range: "2023 — 2026"
 open_source_label: "Open source"
 open_source:
