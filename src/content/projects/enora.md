@@ -4,7 +4,7 @@ title: "A conversational platform for the public sector and charities."
 context: "Japeto Labs"
 year: "2023 —"
 stack: [Java, AWS, React]
-order: 3
+order: 1
 draft: false
 ---
 

@@ -4,7 +4,7 @@ title: "A recycling platform for festivals."
 context: "Japeto Labs"
 year: "2024 —"
 stack: [Spring Boot, PostGIS, AWS]
-order: 4
+order: 2
 draft: false
 ---
 

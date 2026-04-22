@@ -4,7 +4,7 @@ title: "A continuous security pipeline."
 context: "Japeto Labs"
 year: "2025"
 stack: [Jenkins, Docker, Python]
-order: 2
+order: 4
 draft: false
 ---
 
