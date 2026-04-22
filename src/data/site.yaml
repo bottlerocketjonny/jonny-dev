@@ -14,7 +14,6 @@ links:
   - { label: email,    href: "mailto:jj.coddington93@gmail.com" }
   - { label: github,   href: "https://github.com/bottlerocketjonny" }
   - { label: linkedin, href: "TODO" }
-  - { label: cv,       href: "/cv.pdf" }
 about_label: "About"
 about: |
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do

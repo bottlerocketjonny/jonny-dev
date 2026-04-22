@@ -142,6 +142,11 @@ header.top {
   background: var(--ink);
   opacity: 0.6;
 }
+.theme-toggle #themeLabel {
+  display: inline-block;
+  min-width: 3.2em;
+  text-align: left;
+}
 
 /* ============================================================
    HERO
