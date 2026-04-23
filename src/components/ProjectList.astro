@@ -10,7 +10,7 @@ const featured = all.filter((p) => p.data.featured);
 const rest = all.filter((p) => !p.data.featured);
 ---
 <section aria-labelledby="selected-work" id="work">
-  <h2 id="selected-work" class="section-label mono">
+  <h2 id="selected-work" class="section-label mono" data-reveal>
     <span>Selected work</span>
     <span>{site.selected_work_range}</span>
   </h2>

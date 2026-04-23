@@ -2,12 +2,12 @@
 import { site } from '../data/site.ts';
 ---
 <section class="contact" id="contact" aria-labelledby="contact-label">
-  <h2 id="contact-label" class="section-label mono">
+  <h2 id="contact-label" class="section-label mono" data-reveal>
     <span>Contact</span>
     <span>GMT / BST</span>
   </h2>
-  <a class="contact-email" href={`mailto:${site.footer_left}`}>{site.footer_left}</a>
-  <p class="contact-note">
+  <a class="contact-email" href={`mailto:${site.footer_left}`} data-reveal>{site.footer_left}</a>
+  <p class="contact-note" data-reveal>
     Always happy to chat. Feel free to drop a line.
   </p>
 </section>
