@@ -585,35 +585,76 @@ section + section {
 }
 
 /* ============================================================
+   CONTACT
+============================================================ */
+.contact {
+  /* section + section margin rule already handles the top gap */
+}
+.contact-email {
+  display: inline-block;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(1.85rem, 3vw + 0.75rem, 2.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--accent-warm);        /* ORANGE: editorial emphasis */
+  text-decoration: none;
+  margin: 0.25rem 0 0;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+  word-break: break-word;
+}
+.contact-email:hover,
+.contact-email:focus-visible {
+  border-bottom-color: var(--accent-warm);
+}
+.contact-note {
+  margin: 1rem 0 0;
+  font-size: clamp(0.95rem, 0.2vw + 0.9rem, 1.0625rem);
+  color: var(--muted);
+  max-width: 44ch;
+  line-height: 1.6;
+}
+
+/* ============================================================
    FOOTER
 ============================================================ */
 footer {
-  margin-top: clamp(6rem, 14vh, 11rem);
-  padding-top: 1.5rem;
+  margin-top: clamp(4rem, 8vh, 6rem);
+  padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
 }
 .footer-row {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 footer a {
   color: var(--muted);
   transition: color 0.3s;
+  flex: 0 0 auto;
 }
 footer a:hover {
   color: var(--accent);
 }
 
-/* editorial colophon — magazine-back-page vibe. written once, never touched. */
+/* editorial colophon — magazine-back-page vibe. written once, never touched.
+   sits inline on the baseline with the back-to-top link. */
 .colophon {
-  margin: 1.75rem 0 0;
+  margin: 0;
   font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-size: clamp(0.85rem, 0.2vw + 0.8rem, 1rem);
-  line-height: 1.65;
+  line-height: 1.5;
   color: var(--muted);
-  max-width: 56ch;
+  flex: 1 1 auto;
+  /* strip the mono treatment that the parent .footer-row.mono would apply */
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: 'Instrument Serif', serif;
 }
 
 /* ============================================================

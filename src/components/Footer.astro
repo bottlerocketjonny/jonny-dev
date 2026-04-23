@@ -1,12 +1,11 @@
 ---
 import { site } from '../data/site.ts';
 ---
-<footer id="contact">
+<footer>
   <div class="footer-row mono">
-    <span>{site.footer_left}</span>
+    {site.colophon && (
+      <p class="colophon">{site.colophon}</p>
+    )}
     <a href="#top">↑ back to top</a>
   </div>
-  {site.colophon && (
-    <p class="colophon">{site.colophon}</p>
-  )}
 </footer>
