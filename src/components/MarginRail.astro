@@ -164,13 +164,26 @@ const sections = [
     };
 
     if (targets.length > 0) {
+      /* Track every observed section's ratio so the highest-intersecting
+         section wins each callback — not just the entry that happened to
+         cross a threshold this tick. Without this, a section can settle
+         silently at ratio 1 while a neighbour fires for a threshold cross
+         and steals the active state. */
+      const ratios = new Map<string, number>();
+      targets.forEach((t) => ratios.set(t.id, 0));
+
       const observer = new IntersectionObserver(
         (entries) => {
-          const hits = entries.filter((e) => e.isIntersecting);
-          if (hits.length === 0) return;
-          hits.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          const id = (hits[0].target as HTMLElement).id;
-          if (id) setActive(id);
+          entries.forEach((e) => {
+            const id = (e.target as HTMLElement).id;
+            if (id) ratios.set(id, e.intersectionRatio);
+          });
+          let topId: string | null = null;
+          let topRatio = 0;
+          ratios.forEach((r, id) => {
+            if (r > topRatio) { topId = id; topRatio = r; }
+          });
+          if (topId) setActive(topId);
         },
         {
           rootMargin: '-20% 0px -60% 0px',
