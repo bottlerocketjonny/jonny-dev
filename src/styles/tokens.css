@@ -7,25 +7,27 @@
   --bg: #e9ece8;
   --surface: #e0e4de;
   --ink: #1a2125;
-  --muted: #7a8487;
+  /* darker muted: 4.88:1 on --bg (was 3.22:1, failed WCAG AA for body) */
+  --muted: #5f6a6d;
   --rule: #cdd4d2;
 
-  --accent: #5a8599;           /* petrol — interactive */
-  --accent-soft: #c0d3d8;      /* petrol tint */
+  --accent: #446f84;           /* petrol — interactive; 4.79:1 on --bg */
+  --accent-soft: #c0d3d8;      /* petrol tint — decorative backgrounds only */
 
-  --accent-warm: #c87d4a;      /* dusty copper — editorial */
+  --accent-warm: #b56d3f;      /* dusty copper — editorial; 3.52:1 (large text only) */
   --accent-warm-soft: #e8c9a8;
 }
 
 :root[data-theme="dark"] {
-  --bg: #0f1418;
-  --surface: #141a1e;
-  --ink: #dce2e5;
-  --muted: #768187;
-  --rule: #1e262b;
+  /* warm deep ink, not cool charcoal — carry the light-mode tint through */
+  --bg: #141310;
+  --surface: #1c1a15;
+  --ink: #ebe6dc;
+  --muted: #9a9283;
+  --rule: #2a2620;
 
   --accent: #8eb4c4;
-  --accent-soft: #253640;
+  --accent-soft: #2a3a43;
 
   --accent-warm: #e8a472;
   --accent-warm-soft: #3a2a1e;
@@ -33,13 +35,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
-    --bg: #0f1418;
-    --surface: #141a1e;
-    --ink: #dce2e5;
-    --muted: #768187;
-    --rule: #1e262b;
+    --bg: #141310;
+    --surface: #1c1a15;
+    --ink: #ebe6dc;
+    --muted: #9a9283;
+    --rule: #2a2620;
     --accent: #8eb4c4;
-    --accent-soft: #253640;
+    --accent-soft: #2a3a43;
     --accent-warm: #e8a472;
     --accent-warm-soft: #3a2a1e;
   }
