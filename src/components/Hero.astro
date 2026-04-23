@@ -7,10 +7,10 @@ const cyclable = site.hero_accents.length > 1;
 const accentList = JSON.stringify(site.hero_accents);
 
 const base = import.meta.env.BASE_URL;
-const webp160 = `${base}portrait/portrait-160.webp`;
-const webp320 = `${base}portrait/portrait-320.webp`;
-const webp480 = `${base}portrait/portrait-480.webp`;
-const jpg320 = `${base}portrait/portrait-320.jpg`;
+const webp180 = `${base}portrait/me-180.webp`;
+const webp360 = `${base}portrait/me-360.webp`;
+const webp540 = `${base}portrait/me-540.webp`;
+const png360 = `${base}portrait/me-360.png`;
 ---
 <section class="hero" id="hero">
   <div class="eyebrow mono">{site.eyebrow}</div>
@@ -56,13 +56,13 @@ const jpg320 = `${base}portrait/portrait-320.jpg`;
       <picture>
         <source
           type="image/webp"
-          srcset={`${webp160} 1x, ${webp320} 2x, ${webp480} 3x`}
+          srcset={`${webp180} 1x, ${webp360} 2x, ${webp540} 3x`}
         />
         <img
-          src={jpg320}
+          src={png360}
           alt={`${site.name}, full-stack developer`}
-          width="140"
-          height="140"
+          width="180"
+          height="162"
           loading="eager"
           decoding="async"
           fetchpriority="high"

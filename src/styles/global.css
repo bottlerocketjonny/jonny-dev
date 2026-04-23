@@ -200,22 +200,46 @@ header.top .top-right {
 
 .hero-portrait {
   margin: 0;
-  width: clamp(96px, 11vw, 160px);
+  /* cap at 180px — matches the 540px (3x) webp native source so retina
+     displays don't upscale. any larger and edges pixelate. */
+  width: clamp(110px, 13vw, 180px);
   flex: 0 0 auto;
   /* nudge down a touch so it aligns with the intro's x-height rather than
      the row top — magazine byline feel */
   margin-top: 0.4rem;
+  /* framed portrait card: transparent cutout sits on a surface tint that
+     tracks the scheme; 1px rule keeps it part of the editorial system.
+     subject fills width; empty space below the shoulders fills with surface. */
+  aspect-ratio: 1 / 1;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-portrait picture {
+  display: block;
+  width: 100%;
 }
 
 .hero-portrait img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  background: var(--surface);
+}
+
+/* dark mode wants a more present frame — plain --rule disappears against
+   the deep bg. Blend muted into rule for a warmer, readable edge. */
+:root[data-theme="dark"] .hero-portrait {
+  border-color: color-mix(in oklab, var(--muted) 50%, var(--rule));
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .hero-portrait {
+    border-color: color-mix(in oklab, var(--muted) 50%, var(--rule));
+  }
 }
 .hero .eyebrow {
   margin-bottom: 2.25rem;
