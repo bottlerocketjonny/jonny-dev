@@ -24,7 +24,7 @@ const isRealHref = (href?: string) => !!href && /^https?:/.test(href);
   {rest.map((p) => <Project project={p} />)}
   {site.open_source.length > 0 && (
     <aside class="also" aria-label="Open source contributions" data-reveal>
-      <p class="also-lead mono">Also — open source</p>
+      <p class="also-lead mono">Open source</p>
       <ul class="contrib-list">
         {site.open_source.map((c) => (
           <li class="contrib">
