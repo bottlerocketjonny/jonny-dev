@@ -10,8 +10,8 @@ hero_accents:
   - "considered internals"
 hero_suffix: "."
 intro: |
-  Full-stack developer in Sheffield. Eleven years making records before
-  software.
+  Full-stack developer in Sheffield. Eleven years in audio engineering
+  before software.
 intro_muted: |
   Currently building chatbot infrastructure for healthcare and public
   sector, and a grassroots booking platform for independent venues.
@@ -25,4 +25,4 @@ open_source:
   - { label: "Langchain4J",     note: "AWS Bedrock model integrations.", href: "TODO" }
   - { label: "Spring Security", note: "error message improvements.",     href: "TODO" }
 footer_left: "jj.coddington93@gmail.com"
-colophon: "Set in Instrument Serif and Inter Tight. Built with Astro, hand-written CSS, and stubborn attention. Sheffield, 2026."
+colophon: "Instrument Serif and Inter Tight. Built with Astro. Sheffield, 2026."
