@@ -14,6 +14,18 @@
   color: var(--ink);
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ============================================================
    FOCUS — copper, 2px outline, 2px offset
 ============================================================ */
@@ -45,6 +57,10 @@
 }
 .skip-link:focus-visible {
   transform: translateY(0);
+}
+
+html {
+  scroll-padding-top: 2.5rem;
 }
 
 body {
@@ -90,9 +106,13 @@ body::after {
 .container {
   position: relative;
   z-index: 3;
-  max-width: 680px;
+  max-width: 52rem;
   margin: 0 auto;
-  padding: 3.5rem 2rem;
+  /* horizontal padding eases in with viewport width; top padding grows a
+     touch on taller screens; bottom padding gives the small footer scroll
+     runway so keyboard jumps can pull it to the top of the viewport */
+  padding-block: clamp(2.25rem, 4vw, 3.5rem) max(6rem, calc(100vh - 14rem));
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
 }
 
 .mono {
@@ -112,7 +132,13 @@ header.top {
   align-items: center;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--rule);
-  margin-bottom: 5rem;
+  margin-bottom: clamp(3rem, 6vw, 5.5rem);
+  gap: 1rem;
+}
+header.top .top-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .theme-toggle {
@@ -128,7 +154,11 @@ header.top {
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+  /* holds width steady across themes so "dark" and "light" both sit with
+     even padding either side of the dot + text group */
+  min-width: 6.25em;
   transition: color 0.3s, border-color 0.3s;
 }
 .theme-toggle:hover {
@@ -144,15 +174,48 @@ header.top {
 }
 .theme-toggle #themeLabel {
   display: inline-block;
-  min-width: 4.5em;
-  text-align: left;
 }
 
 /* ============================================================
    HERO
 ============================================================ */
 .hero {
-  margin-bottom: 7rem;
+  margin-bottom: clamp(6rem, 14vh, 11rem);
+}
+
+/* byline row — intro copy + portrait, sits below the full-width h1.
+   flex-wraps to stacked layout on narrow viewports; above ~620px the
+   portrait sits directly to the right of the intro (not pushed to the
+   far margin) so the two read as a byline. */
+.hero-byline {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: flex-start;
+}
+.hero-body {
+  flex: 1 1 26rem;
+  max-width: 44ch;
+}
+
+.hero-portrait {
+  margin: 0;
+  width: clamp(96px, 11vw, 160px);
+  flex: 0 0 auto;
+  /* nudge down a touch so it aligns with the intro's x-height rather than
+     the row top — magazine byline feel */
+  margin-top: 0.4rem;
+}
+
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--surface);
 }
 .hero .eyebrow {
   margin-bottom: 2.25rem;
@@ -170,10 +233,10 @@ header.top {
 .hero h1 {
   font-family: 'Instrument Serif', serif;
   font-weight: 400;
-  font-size: clamp(2.5rem, 8.5vw, 4.5rem);
+  font-size: clamp(2.5rem, 7.5vw, 5.25rem);
   line-height: 1;
   letter-spacing: -0.015em;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   max-width: 14ch;
   animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -198,13 +261,67 @@ header.top {
   transform-origin: left;
   animation: draw 0.9s 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
+.hero h1 em.redrawing::after {
+  animation: draw 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* accent trigger — invisible button wrapping the em; inherits hero type.
+   affordance is deliberately quiet: a small cycle glyph trailing the word
+   that surfaces on hover/focus. editorial, not SaaS — it reads as a
+   footnote the reader can follow, not a call-to-action. */
+.accent-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+.accent-trigger em {
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+.accent-trigger:hover em,
+.accent-trigger:focus-visible em {
+  color: color-mix(in oklab, var(--accent-warm) 85%, var(--ink));
+}
+.accent-trigger::after {
+  content: '↻';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.28em;
+  color: var(--accent-warm);
+  opacity: 0;
+  margin-left: 0.4em;
+  vertical-align: 0.6em;
+  letter-spacing: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.accent-trigger:hover::after,
+.accent-trigger:focus-visible::after {
+  opacity: 0.6;
+  transform: translateX(0);
+}
+.accent-trigger:focus {
+  outline: none;
+}
+.accent-trigger:focus-visible {
+  outline: 2px solid var(--accent-warm);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
 
 .hero .intro {
-  font-size: 1.0625rem;
+  font-size: clamp(1rem, 0.25vw + 0.95rem, 1.1875rem);
   color: var(--ink);
   max-width: 40ch;
   line-height: 1.65;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(2rem, 3vw, 3rem);
   font-weight: 300;
   animation: fadeUp 1.2s 0.2s both cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -250,21 +367,30 @@ header.top {
 .section-label {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(2rem, 3.5vw, 3.25rem);
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--rule);
 }
 
 .project {
   display: block;
-  padding: 2rem 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
   border-bottom: 1px solid var(--rule);
   color: var(--ink);
-  transition: padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
+  overflow: hidden;
 }
-.project:hover {
-  padding-left: 2.25rem;
+/* inner wrapper holds all project content — animate translateX on this
+   instead of padding on .project, so the nudge is GPU-composited and the
+   bottom border stays put */
+.project .project-inner {
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.project:hover .project-inner,
+.project:focus-visible .project-inner {
+  transform: translateX(2.25rem);
 }
 .project::before {
   content: '→';
@@ -281,7 +407,8 @@ header.top {
   transition: opacity 0.35s, transform 0.35s;
   pointer-events: none;
 }
-.project:hover::before {
+.project:hover::before,
+.project:focus-visible::before {
   opacity: 1;
   transform: translate(0, -50%);
 }
@@ -313,9 +440,9 @@ header.top {
 
 .project .title {
   font-family: 'Instrument Serif', serif;
-  font-size: 1.85rem;
+  font-size: clamp(1.5rem, 2vw + 0.85rem, 2.35rem);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.005em;
   margin-bottom: 0.75rem;
 }
@@ -324,9 +451,9 @@ header.top {
   color: var(--accent-warm);       /* ORANGE: editorial emphasis */
 }
 .project .desc {
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 0.2vw + 0.85rem, 1rem);
   color: var(--muted);
-  max-width: 52ch;
+  max-width: 58ch;
   line-height: 1.6;
   margin-bottom: 1rem;
 }
@@ -356,16 +483,16 @@ a.project:hover .affordance {
   margin-bottom: 1rem;
 }
 .project--featured {
-  padding: 2.75rem 0 2.75rem;
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
 }
 .project--featured .title {
-  font-size: 2.35rem;
+  font-size: clamp(1.85rem, 2.75vw + 0.75rem, 2.9rem);
   max-width: 22ch;
   margin-bottom: 1rem;
 }
 .project--featured .desc {
-  font-size: 1.0625rem;
-  max-width: 50ch;
+  font-size: clamp(1rem, 0.25vw + 0.95rem, 1.15rem);
+  max-width: 56ch;
   color: var(--ink);
   margin-bottom: 1.5rem;
 }
@@ -387,28 +514,26 @@ a.project:hover .affordance {
 .pullquote {
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  font-size: 1.35rem;
+  /* floor at 1.5rem (=24px) so any copper usage inside qualifies as WCAG large text */
+  font-size: clamp(1.5rem, 1vw + 1.25rem, 1.85rem);
   line-height: 1.4;
   color: var(--ink);
   max-width: 34ch;
   margin: 0 0 1.5rem;
   padding-left: 1rem;
   border-left: 1px solid var(--accent-warm);
+  /* quiet at rest; brightens when the project is hovered or focused —
+     the single peak moment on the list */
+  opacity: 0.5;
+  transition: opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
-@media (max-width: 600px) {
-  .project--featured {
-    padding: 2rem 0;
-  }
-  .project--featured .title {
-    font-size: 1.95rem;
-  }
-  .project--featured .desc {
-    font-size: 1rem;
-  }
-  .pullquote {
-    font-size: 1.2rem;
-  }
+a.project:hover .pullquote,
+a.project:focus-visible .pullquote {
+  opacity: 1;
+}
+/* private projects have no interactive peak — keep pullquote fully legible */
+.project--private .pullquote {
+  opacity: 1;
 }
 
 /* ============================================================
@@ -418,9 +543,9 @@ a.project:hover .affordance {
   padding: 0.5rem 0 0;
 }
 .contrib {
-  padding: 1.25rem 0;
+  padding: clamp(1rem, 2vw, 1.5rem) 0;
   border-bottom: 1px solid var(--rule);
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 0.2vw + 0.85rem, 1rem);
   line-height: 1.6;
   color: var(--muted);
 }
@@ -430,7 +555,8 @@ a.project:hover .affordance {
 .contrib-label {
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  font-size: 1.25rem;
+  /* floor at 1.5rem (=24px) so the copper italic qualifies as WCAG large text */
+  font-size: clamp(1.5rem, 0.6vw + 1.35rem, 1.75rem);
   color: var(--accent-warm);       /* ORANGE: editorial emphasis */
 }
 .contrib-sep {
@@ -453,20 +579,23 @@ a.project:hover .affordance {
   margin-left: 0.25rem;
 }
 
-/* give the open-source section some breathing room after projects */
+/* generous gap between major sections so each lands distinctly when scrolled to */
 section + section {
-  margin-top: 4rem;
+  margin-top: clamp(6rem, 14vh, 11rem);
 }
 
 /* ============================================================
    FOOTER
 ============================================================ */
 footer {
-  margin-top: 7rem;
+  margin-top: clamp(6rem, 14vh, 11rem);
   padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
+}
+.footer-row {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
 }
 footer a {
   color: var(--muted);
@@ -474,6 +603,17 @@ footer a {
 }
 footer a:hover {
   color: var(--accent);
+}
+
+/* editorial colophon — magazine-back-page vibe. written once, never touched. */
+.colophon {
+  margin: 1.75rem 0 0;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 0.2vw + 0.8rem, 1rem);
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 56ch;
 }
 
 /* ============================================================
@@ -493,22 +633,40 @@ footer a:hover {
     animation: none !important;
     transition: none !important;
   }
+  /* the draw animation is disabled above, which would leave the accent
+     underline invisible — ship it as a static line instead so the emphasis
+     still reads */
+  .hero h1 em::after {
+    transform: scaleX(1);
+  }
 }
 
 /* ============================================================
    RESPONSIVE
 ============================================================ */
-@media (max-width: 600px) {
-  .container {
-    padding: 3rem 1.5rem;
-  }
-  .hero {
-    margin-bottom: 5rem;
-  }
-  .project:hover {
-    padding-left: 0;
+/* hover-nudge is a pointer affordance — drop it on touch-only devices where
+   hover fires on tap and would flash. also keep small-screen viewports from
+   clipping the indicator at the container edge. */
+@media (hover: none) {
+  .project:hover .project-inner {
+    transform: none;
   }
   .project::before {
     display: none;
+  }
+  /* no hover peak on touch — keep the pullquote fully legible */
+  a.project .pullquote {
+    opacity: 1;
+  }
+}
+@media (max-width: 480px) {
+  .project:hover .project-inner {
+    transform: none;
+  }
+  .project::before {
+    display: none;
+  }
+  a.project .pullquote {
+    opacity: 1;
   }
 }

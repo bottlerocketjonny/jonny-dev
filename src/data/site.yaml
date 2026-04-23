@@ -1,8 +1,13 @@
 name: Jonny Coddington
 location: Sheffield
-eyebrow: Portfolio
+eyebrow: About
 hero_prefix: "Backend systems &"
 hero_accent: "quiet interfaces"
+hero_accents:
+  - "quiet interfaces"
+  - "stubborn details"
+  - "calmer infrastructure"
+  - "considered internals"
 hero_suffix: "."
 intro: |
   Full-stack developer in Sheffield. Eleven years making records before
@@ -20,3 +25,4 @@ open_source:
   - { label: "Langchain4J",     note: "AWS Bedrock model integrations.", href: "TODO" }
   - { label: "Spring Security", note: "error message improvements.",     href: "TODO" }
 footer_left: "jj.coddington93@gmail.com"
+colophon: "Set in Instrument Serif and Inter Tight. Built with Astro, hand-written CSS, and stubborn attention. Sheffield, 2026."

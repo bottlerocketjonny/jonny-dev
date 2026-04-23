@@ -3,25 +3,109 @@ import { site } from '../data/site.ts';
 
 const intro = site.intro.replace(/\s+/g, ' ').trim();
 const introMuted = site.intro_muted.replace(/\s+/g, ' ').trim();
+const cyclable = site.hero_accents.length > 1;
+const accentList = JSON.stringify(site.hero_accents);
+
+const base = import.meta.env.BASE_URL;
+const webp160 = `${base}portrait/portrait-160.webp`;
+const webp320 = `${base}portrait/portrait-320.webp`;
+const webp480 = `${base}portrait/portrait-480.webp`;
+const jpg320 = `${base}portrait/portrait-320.jpg`;
 ---
-<section class="hero">
+<section class="hero" id="hero">
   <div class="eyebrow mono">{site.eyebrow}</div>
-  <h1>{site.hero_prefix} <span class="accent-lockup"><em>{site.hero_accent}</em>{site.hero_suffix}</span></h1>
-  <p class="intro">
-    {intro} <span class="muted">{introMuted}</span>
-  </p>
-  <nav class="links" aria-label="Primary">
-    {site.links.map((l) => {
-      const external = /^https?:/.test(l.href);
-      return (
-        <a
-          href={l.href}
-          rel={external ? 'noopener noreferrer' : undefined}
-          target={external ? '_blank' : undefined}
-        >
-          {l.label} ↗
-        </a>
-      );
-    })}
-  </nav>
+  <h1>
+    {site.hero_prefix}{' '}
+    <span class="accent-lockup">
+      {cyclable ? (
+        <button
+          type="button"
+          class="accent-trigger"
+          data-hero-accents={accentList}
+          aria-describedby="accentHint"
+        ><em>{site.hero_accent}</em></button>
+      ) : (
+        <em>{site.hero_accent}</em>
+      )}{site.hero_suffix}
+    </span>
+  </h1>
+  <div class="hero-byline">
+    <div class="hero-body">
+      <p class="intro">
+        {intro} <span class="muted">{introMuted}</span>
+      </p>
+      <span id="accentHint" class="visually-hidden">
+        Click to cycle the accent phrase.
+      </span>
+      <nav class="links" aria-label="Primary">
+        {site.links.map((l) => {
+          const external = /^https?:/.test(l.href);
+          return (
+            <a
+              href={l.href}
+              rel={external ? 'noopener noreferrer' : undefined}
+              target={external ? '_blank' : undefined}
+            >
+              {l.label} ↗
+            </a>
+          );
+        })}
+      </nav>
+    </div>
+    <figure class="hero-portrait">
+      <picture>
+        <source
+          type="image/webp"
+          srcset={`${webp160} 1x, ${webp320} 2x, ${webp480} 3x`}
+        />
+        <img
+          src={jpg320}
+          alt={`${site.name}, full-stack developer`}
+          width="140"
+          height="140"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </picture>
+    </figure>
+  </div>
 </section>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.accent-trigger');
+  if (btn) {
+    const em = btn.querySelector<HTMLElement>('em');
+    const raw = btn.dataset.heroAccents;
+    if (em && raw) {
+      let phrases: string[] = [];
+      try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          phrases = parsed.filter((p): p is string => typeof p === 'string');
+        }
+      } catch {
+        phrases = [];
+      }
+
+      if (phrases.length > 1) {
+        const prefersReducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)',
+        ).matches;
+
+        let idx = phrases.indexOf((em.textContent ?? '').trim());
+        if (idx === -1) idx = 0;
+
+        btn.addEventListener('click', () => {
+          idx = (idx + 1) % phrases.length;
+          em.textContent = phrases[idx];
+          if (!prefersReducedMotion) {
+            em.classList.remove('redrawing');
+            em.getAnimations().forEach((a) => a.cancel());
+            requestAnimationFrame(() => em.classList.add('redrawing'));
+          }
+        });
+      }
+    }
+  }
+</script>

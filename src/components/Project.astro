@@ -14,61 +14,66 @@ const linkLabel = data.link_label ?? 'source';
 const classes = ['project', data.featured && 'project--featured']
   .filter(Boolean)
   .join(' ');
+const anchorId = `project-${project.id}`;
 ---
 {data.link ? (
-  <a class={classes} href={data.link} rel="noopener noreferrer" target="_blank">
-    {data.image && (
-      <figure class="project-image">
-        <img
-          src={data.image.src}
-          alt={data.image.alt}
-          width={data.image.width}
-          height={data.image.height}
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
-    )}
-    <div class="meta-row">
-      <span class="context">{data.context}</span>
-      <span class="year">{data.year}</span>
-    </div>
-    <h3 class="title"><em>{data.accent}.</em>{data.title && <>{' '}{data.title}</>}</h3>
-    <div class="desc"><Content /></div>
-    {data.pullquote && <blockquote class="pullquote">{data.pullquote}</blockquote>}
-    <div class="stack mono">
-      {data.stack.map((s) => <span>{s}</span>)}
-    </div>
-    <div class="affordance mono" aria-hidden="true">
-      <span>{linkLabel} ↗</span>
+  <a class={classes} href={data.link} rel="noopener noreferrer" target="_blank" id={anchorId}>
+    <div class="project-inner">
+      {data.image && (
+        <figure class="project-image">
+          <img
+            src={data.image.src}
+            alt={data.image.alt}
+            width={data.image.width}
+            height={data.image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      )}
+      <div class="meta-row">
+        <span class="context">{data.context}</span>
+        <span class="year">{data.year}</span>
+      </div>
+      <h3 class="title"><em>{data.accent}.</em>{data.title && <>{' '}{data.title}</>}</h3>
+      <div class="desc"><Content /></div>
+      {data.pullquote && <blockquote class="pullquote">{data.pullquote}</blockquote>}
+      <div class="stack mono">
+        {data.stack.map((s) => <span>{s}</span>)}
+      </div>
+      <div class="affordance mono" aria-hidden="true">
+        <span>{linkLabel} ↗</span>
+      </div>
     </div>
   </a>
 ) : (
-  <article class={`${classes} project--private`}>
-    {data.image && (
-      <figure class="project-image">
-        <img
-          src={data.image.src}
-          alt={data.image.alt}
-          width={data.image.width}
-          height={data.image.height}
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
-    )}
-    <div class="meta-row">
-      <span class="context">{data.context}</span>
-      <span class="year">{data.year}</span>
-    </div>
-    <h3 class="title"><em>{data.accent}.</em>{data.title && <>{' '}{data.title}</>}</h3>
-    <div class="desc"><Content /></div>
-    {data.pullquote && <blockquote class="pullquote">{data.pullquote}</blockquote>}
-    <div class="stack mono">
-      {data.stack.map((s) => <span>{s}</span>)}
-    </div>
-    <div class="affordance mono">
-      <span>private — available on request</span>
+  <article class={`${classes} project--private`} id={anchorId}>
+    <div class="project-inner">
+      {data.image && (
+        <figure class="project-image">
+          <img
+            src={data.image.src}
+            alt={data.image.alt}
+            width={data.image.width}
+            height={data.image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      )}
+      <div class="meta-row">
+        <span class="context">{data.context}</span>
+        <span class="year">{data.year}</span>
+      </div>
+      <h3 class="title"><em>{data.accent}.</em>{data.title && <>{' '}{data.title}</>}</h3>
+      <div class="desc"><Content /></div>
+      {data.pullquote && <blockquote class="pullquote">{data.pullquote}</blockquote>}
+      <div class="stack mono">
+        {data.stack.map((s) => <span>{s}</span>)}
+      </div>
+      <div class="affordance mono">
+        <span>private — available on request</span>
+      </div>
     </div>
   </article>
 )}

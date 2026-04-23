@@ -1,0 +1,186 @@
+---
+const sections = [
+  { id: 'hero', label: 'About' },
+  { id: 'work', label: 'Work' },
+  { id: 'contributions', label: 'Open source' },
+  { id: 'contact', label: 'Contact' },
+];
+---
+<nav class="rail" aria-label="Section navigation" data-rail>
+  <ol>
+    {sections.map((s, i) => (
+      <li>
+        <a
+          href={`#${s.id}`}
+          class="rail-tick"
+          data-rail-target={s.id}
+          aria-label={`Jump to ${s.label}`}
+        >
+          <span class="rail-num mono" aria-hidden="true">0{i + 1}</span>
+          <span class="rail-line" aria-hidden="true"></span>
+          <span class="rail-label mono">{s.label}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .rail {
+    position: fixed;
+    left: clamp(1.5rem, 3vw, 2.75rem);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .rail ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .rail-tick {
+    pointer-events: auto;
+    display: grid;
+    grid-template-columns: 1.5rem 2.5rem auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .rail-num {
+    font-size: 9px;
+    opacity: 0.55;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    text-align: right;
+  }
+
+  /* line sits in a fixed 2.5rem column at full width; scaleX from the left
+     keeps the active/hover growth GPU-composited instead of reflowing */
+  .rail-line {
+    display: block;
+    height: 1px;
+    width: 2.25rem;
+    background: var(--rule);
+    transform: scaleX(0.556);
+    transform-origin: left center;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.3s ease;
+  }
+
+  .rail-label {
+    /* small resting presence — not invisible, but quiet. principle: the
+       rail should announce itself on a first-paint scan, not only on hover. */
+    opacity: 0.25;
+    transform: translateX(-4px);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                color 0.3s ease;
+    white-space: nowrap;
+    padding-left: 0.25rem;
+  }
+
+  .rail:hover .rail-label,
+  .rail:focus-within .rail-label {
+    opacity: 0.85;
+    transform: translateX(0);
+  }
+  .rail:hover .rail-num,
+  .rail:focus-within .rail-num {
+    opacity: 0.85;
+  }
+
+  .rail-tick:hover .rail-line,
+  .rail-tick:focus-visible .rail-line {
+    transform: scaleX(0.778);
+    background: var(--muted);
+  }
+  .rail-tick:hover,
+  .rail-tick:focus-visible {
+    color: var(--ink);
+  }
+
+  .rail-tick[data-active="true"] .rail-line {
+    transform: scaleX(1);
+    background: var(--accent);
+  }
+  .rail-tick[data-active="true"] .rail-num,
+  .rail-tick[data-active="true"] .rail-label {
+    color: var(--accent);
+    opacity: 1;
+  }
+  .rail-tick[data-active="true"] {
+    color: var(--ink);
+  }
+
+  .rail-tick:focus {
+    outline: none;
+  }
+  .rail-tick:focus-visible {
+    outline: 2px solid var(--accent-warm);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* hide until the viewport has a genuine gutter — below this the rail
+     collides with the h1's descenders and reads as a layout bug */
+  @media (max-width: 1199.98px) {
+    .rail {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rail-line,
+    .rail-label,
+    .rail-num,
+    .rail-tick {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const ticks = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-rail-target]'),
+  );
+  if (ticks.length > 0) {
+    const targets = ticks
+      .map((tick) => {
+        const id = tick.dataset.railTarget;
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((el): el is HTMLElement => el !== null);
+
+    const setActive = (id: string) => {
+      ticks.forEach((tick) => {
+        tick.dataset.active = tick.dataset.railTarget === id ? 'true' : 'false';
+      });
+    };
+
+    if (targets.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const hits = entries.filter((e) => e.isIntersecting);
+          if (hits.length === 0) return;
+          hits.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          const id = (hits[0].target as HTMLElement).id;
+          if (id) setActive(id);
+        },
+        {
+          rootMargin: '-20% 0px -60% 0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+        },
+      );
+      targets.forEach((el) => observer.observe(el));
+      const first = targets[0].id;
+      if (first) setActive(first);
+    }
+  }
+</script>

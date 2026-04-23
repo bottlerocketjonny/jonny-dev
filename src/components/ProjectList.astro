@@ -9,7 +9,7 @@ const all = (await getCollection('projects', ({ data }) => !data.draft))
 const featured = all.filter((p) => p.data.featured);
 const rest = all.filter((p) => !p.data.featured);
 ---
-<section aria-labelledby="selected-work">
+<section aria-labelledby="selected-work" id="work">
   <h2 id="selected-work" class="section-label mono">
     <span>Selected work</span>
     <span>{site.selected_work_range}</span>

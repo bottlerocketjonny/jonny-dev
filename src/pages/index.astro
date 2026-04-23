@@ -5,16 +5,22 @@ import ProjectList from '../components/ProjectList.astro';
 import OpenSource from '../components/OpenSource.astro';
 import Footer from '../components/Footer.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import MarginRail from '../components/MarginRail.astro';
+import ShortcutLegend from '../components/ShortcutLegend.astro';
 import { site } from '../data/site.ts';
 
 const description = site.intro.replace(/\s+/g, ' ').trim();
 ---
 <Base title={`${site.name} - Software Developer`} description={description}>
   <a class="skip-link" href="#main">skip to content</a>
+  <MarginRail />
   <div class="container" id="top">
     <header class="top">
       <span class="mono">{site.name} — {site.location}</span>
-      <ThemeToggle />
+      <div class="top-right">
+        <ShortcutLegend />
+        <ThemeToggle />
+      </div>
     </header>
     <main id="main">
       <Hero />

@@ -8,6 +8,7 @@ const SiteSchema = z.object({
   eyebrow: z.string(),
   hero_prefix: z.string(),
   hero_accent: z.string(),
+  hero_accents: z.array(z.string()).default([]),
   hero_suffix: z.string(),
   intro: z.string(),
   intro_muted: z.string(),
@@ -27,6 +28,7 @@ const SiteSchema = z.object({
     }),
   ),
   footer_left: z.string(),
+  colophon: z.string().optional(),
 });
 
 export type Site = z.infer<typeof SiteSchema>;
