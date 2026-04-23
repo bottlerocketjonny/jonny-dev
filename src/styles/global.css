@@ -207,6 +207,9 @@ header.top .top-right {
   /* nudge down a touch so it aligns with the intro's x-height rather than
      the row top — magazine byline feel */
   margin-top: 0.4rem;
+  /* slot into the hero's fadeUp choreography — lands between h1 (0s) and
+     intro (0.2s) so the face arrives with the opening line */
+  animation: fadeUp 1.2s 0.1s both cubic-bezier(0.2, 0.8, 0.2, 1);
   /* framed portrait card: transparent cutout sits on a surface tint that
      tracks the scheme; 1px rule keeps it part of the editorial system.
      subject fills width; empty space below the shoulders fills with surface. */
@@ -691,10 +694,10 @@ footer a:hover {
    needed; on desktop the below-fold sections reveal as the user scrolls. */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(20px);
   transition:
-    opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.is-visible {
   opacity: 1;
