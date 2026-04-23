@@ -8,6 +8,8 @@ const all = (await getCollection('projects', ({ data }) => !data.draft))
 
 const featured = all.filter((p) => p.data.featured);
 const rest = all.filter((p) => !p.data.featured);
+
+const isRealHref = (href?: string) => !!href && /^https?:/.test(href);
 ---
 <section aria-labelledby="selected-work" id="work">
   <h2 id="selected-work" class="section-label mono" data-reveal>
@@ -20,4 +22,29 @@ const rest = all.filter((p) => !p.data.featured);
     </div>
   )}
   {rest.map((p) => <Project project={p} />)}
+  {site.open_source.length > 0 && (
+    <aside class="also" aria-label="Open source contributions" data-reveal>
+      <p class="also-lead mono">Also — open source</p>
+      <ul class="contrib-list">
+        {site.open_source.map((c) => (
+          <li class="contrib">
+            {isRealHref(c.href) ? (
+              <a class="contrib-link" href={c.href} rel="noopener noreferrer" target="_blank">
+                <em class="contrib-label">{c.label}</em>
+                <span class="contrib-sep" aria-hidden="true"> — </span>
+                <span class="contrib-note">{c.note}</span>
+                <span class="contrib-arrow" aria-hidden="true"> ↗</span>
+              </a>
+            ) : (
+              <>
+                <em class="contrib-label">{c.label}</em>
+                <span class="contrib-sep" aria-hidden="true"> — </span>
+                <span class="contrib-note">{c.note}</span>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )}
 </section>

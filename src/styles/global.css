@@ -561,13 +561,23 @@ a.project:focus-visible .pullquote {
 }
 
 /* ============================================================
-   OPEN SOURCE
+   ALSO — open-source tail at the foot of Selected Work
 ============================================================ */
+.also {
+  margin-top: clamp(3rem, 5vw, 4.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+.also-lead {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+}
 .contrib-list {
-  padding: 0.5rem 0 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .contrib {
-  padding: clamp(1rem, 2vw, 1.5rem) 0;
+  padding: clamp(0.9rem, 1.5vw, 1.25rem) 0;
   border-bottom: 1px solid var(--rule);
   font-size: clamp(0.9rem, 0.2vw + 0.85rem, 1rem);
   line-height: 1.6;
