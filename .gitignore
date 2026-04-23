@@ -25,3 +25,7 @@ pnpm-debug.log*
 !.vscode/launch.json
 !.vscode/settings.json
 .idea/
+
+# local screenshots and browser-automation caches
+/*.png
+.playwright-mcp/
