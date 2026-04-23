@@ -291,10 +291,18 @@ const shortcuts = [
     sectionEls.forEach((el) => observer.observe(el));
   }
 
+  // use window.scrollTo with an explicit y rather than scrollIntoView:
+  // rapid successive scrollIntoView calls (e.g. 3 then 2, which reverses
+  // direction mid-animation) get dropped or mis-targeted in Chromium.
+  // scrollTo with a computed position supersedes cleanly.
   const scrollToEl = (el: HTMLElement) => {
-    el.scrollIntoView({
+    const padTop = parseFloat(
+      getComputedStyle(document.documentElement).scrollPaddingTop || '0',
+    );
+    const y = el.getBoundingClientRect().top + window.scrollY - (padTop || 0);
+    window.scrollTo({
+      top: Math.max(0, y),
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
-      block: 'start',
     });
   };
 
