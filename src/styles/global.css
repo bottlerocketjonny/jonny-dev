@@ -405,19 +405,17 @@ header.top .top-right {
   border-bottom: 1px solid var(--rule);
   color: var(--ink);
   position: relative;
-  overflow: hidden;
 }
-/* inner wrapper holds all project content — animate translateX on this
-   instead of padding on .project, so the nudge is GPU-composited and the
-   bottom border stays put */
+/* inner wrapper holds all project content — animate padding-left on this
+   so the meta-row's right edge (year) stays anchored to the container and
+   only the left side opens up to make room for the arrow affordance */
 .project .project-inner {
   display: block;
-  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: transform;
+  transition: padding-left 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .project:hover .project-inner,
 .project:focus-visible .project-inner {
-  transform: translateX(2.25rem);
+  padding-left: 2.25rem;
 }
 .project::before {
   content: '→';
