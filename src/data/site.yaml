@@ -16,14 +16,14 @@ intro_muted: |
   Currently building chatbot infrastructure for healthcare and public
   sector, and a grassroots booking platform for independent venues.
 links:
-  - { label: email,    href: "mailto:jj.coddington93@gmail.com" }
+  - { label: email,    href: "mailto:hi@jonnyc.dev" }
   - { label: github,   href: "https://github.com/bottlerocketjonny" }
-  - { label: linkedin, href: "TODO" }
+  - { label: linkedin, href: "https://www.linkedin.com/in/jonnycoddington" }
 selected_work_range: "2023 — 2026"
 open_source_label: "Open source"
 open_source:
   - { label: "Langchain4J",     note: "Added AWS Bedrock foundational models.",   href: "https://github.com/langchain4j/langchain4j/pull/773" }
   - { label: "Langchain4J",     note: "Migrated Bedrock client to Jackson.",      href: "https://github.com/langchain4j/langchain4j/pull/1730" }
   - { label: "Spring Security", note: "Improved PasswordEncoder error message.",  href: "https://github.com/spring-projects/spring-security/pull/14968" }
-footer_left: "jj.coddington93@gmail.com"
+footer_left: "hi@jonnyc.dev"
 colophon: "Instrument Serif and Inter Tight. Built with Astro. Sheffield, 2026."
