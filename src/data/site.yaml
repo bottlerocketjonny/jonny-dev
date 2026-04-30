@@ -18,7 +18,7 @@ intro_muted: |
 links:
   - { label: email,    href: "mailto:hi@jonnyc.dev" }
   - { label: github,   href: "https://github.com/bottlerocketjonny" }
-  - { label: linkedin, href: "https://www.linkedin.com/in/jonnycoddington" }
+  - { label: linkedin, href: "https://www.linkedin.com/in/jonny-coddington/" }
 selected_work_range: "2023 — 2026"
 open_source_label: "Open source"
 open_source:
